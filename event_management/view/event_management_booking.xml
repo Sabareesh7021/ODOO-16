@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+<data>
+      <record id="event_management1_action" model="ir.actions.act_window">
+            <field name="name">Event Booking</field>
+            <field name="res_model">event_booking</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+
+
+    <menuitem id="event_management_first_level_menu" name="Event Booking" action="event_management1_action" parent="event_management_type_root"/>
+</data>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+<data>
+<record id="event_management3_action" model="ir.actions.act_window">
+            <field name="name">Service</field>
+            <field name="res_model">event_service</field>
+            <field name="view_mode">tree,form</field>
+</record>
+ <menuitem id="event_management_second_level2_menu"   name="Service" action="event_management3_action" parent="event_management_second_level_menu"/>
+</data>
+</odoo>
+
+
+

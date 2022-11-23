@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="event_management22_action" model="ir.ui.view">
+            <field name="model">event_type</field>
+            <field name="arch" type="xml">
+                <tree string="test model">
+                    <field name="Event_Type"/>
+                    <field name="Code"/>
+                    <field name="Image"/>
+                </tree>
+            </field>
+          </record>
+          <record id="event_management21_action" model="ir.ui.view">
+                <field name="model">event_type</field>
+                <field name="arch" type="xml">
+                    <form string="test model">
+                        <sheet>
+                            <group>
+                                    <field name="Event_Type"/>
+                                    <field name="Code"/>
+                            </group>
+                            <group>
+                                <field name="Image"/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+          </record>
+        <record id="event_management2_action" model="ir.actions.act_window">
+            <field name="name">Event Types</field>
+            <field name="res_model">event_type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+     <menuitem id="event_management_type_root" name="Event management"/>
+        <menuitem id="event_management_second_level_menu" name="Configuration"  />
+     <menuitem id="event_management_second_level1_menu"   name="Event Type" action="event_management2_action" parent="event_management_second_level_menu"/>
+    </data>
+</odoo>
