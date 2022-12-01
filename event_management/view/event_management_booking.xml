@@ -1,13 +1,53 @@
 <?xml version="1.0" ?>
 <odoo>
 <data>
-      <record id="event_management1_action" model="ir.actions.act_window">
+      <record id="event_management_one_tree_action" model="ir.ui.view">
+            <field name="model">event.booking</field>
+            <field name="arch" type="xml">
+                <tree string="event.booking">
+                    <field name="event"/>
+                    <field name="event_type"/>
+                    <field name="booking_date"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+          </record>
+          <record id="event_management_one_form_action" model="ir.ui.view">
+                <field name="model">event.booking</field>
+                <field name="arch" type="xml">
+                    <form string="event.booking">
+                        <header>
+                            <button id="action_confirm" name="action_confirm" string="Confirm" class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', 'draft')]}"/>
+                            <button name= "catering_service" string="catering service" class="btn-primary" type="object"/>
+                            <field name="state" widget="statusbar"  string="Status"/>
+                        </header>
+                        <sheet>
+                            <group>
+                                    <field name="event"/>
+                                    <field name = "cust_name" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
+                                    <field name="event_type" widget="event.type_many2one"/>
+                                    <field name="booking_date"/>
+                                    <field name="start_date"/>
+                                    <field name="end_date"/>
+                                    <field name="duration_id"/>
+                            </group>
+                        </sheet>
+                        <div class="oe_chatter">
+                            <field name ="message_follower_ids" widget="mail_attachment"/>
+                            <field name="activity_ids"/>
+                            <field name = "message_ids" widget="mail_thread"/>
+                        </div>
+                    </form>
+                </field>
+          </record>
+      <record id="event_management_one_action" model="ir.actions.act_window">
             <field name="name">Event Booking</field>
-            <field name="res_model">event_booking</field>
+            <field name="res_model">event.booking</field>
             <field name="view_mode">tree,form</field>
       </record>
 
-
-    <menuitem id="event_management_first_level_menu" name="Event Booking" action="event_management1_action" parent="event_management_type_root"/>
+    <menuitem id="event_management_first_level_menu" name="Event Management" parent="event_management_type_root" sequence="0"/>
+    <menuitem id="event_management_first_level_one_menu" name="Event Booking" action="event_management_one_action" parent="event_management_first_level_menu"/>
 </data>
 </odoo>

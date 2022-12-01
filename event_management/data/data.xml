@@ -1,0 +1,10 @@
+<odoo>
+    <data>
+        <record id="seq_hospital_management" model="ir.sequence">
+            <field name="name">Event</field>
+            <field name="code">event.code</field>
+            <field name="prefix">EC</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

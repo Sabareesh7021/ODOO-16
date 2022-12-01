@@ -1,12 +1,60 @@
+<?xml version="1.0" ?>
 <odoo>
-<data>
-<record id="event_management3_action" model="ir.actions.act_window">
+    <data>
+        <record id="event_management31_action" model="ir.ui.view">
+            <field name="model">event.service</field>
+            <field name="arch" type="xml">
+                <tree string="test model">
+                    <field name="service"/>
+                    <field name="responsible_person"/>
+                </tree>
+            </field>
+        </record>
+        <record id="event_management_three_tree_action" model="ir.ui.view">
+            <field name="model">event.service</field>
+            <field name="arch" type="xml">
+                <form string="Form View">
+                    <sheet>
+                        <group>
+                            <field name="service"/>
+                            <field name="responsible_person"/>
+                        </group>
+                        <notebook>
+                            <page string="Order Line">
+                                <field name="order_id">
+                                    <tree editable="bottom">
+                                        <field name="description"/>
+                                        <field name="quantity"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="unit_price" widget="monetary"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name = "sub_total" widget="monetary"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="demo_data_service_one" model="event.service">
+            <field name="service">Catering</field>
+        </record>
+        <record id="demo_data_service_two" model="event.service">
+            <field name="service">Decorations</field>
+        </record>
+        <record id="demo_data_service_three" model="event.service">
+            <field name="service">Escort</field>
+        </record>
+
+
+        <record id="event_management_three_action" model="ir.actions.act_window">
             <field name="name">Service</field>
-            <field name="res_model">event_service</field>
+            <field name="res_model">event.service</field>
             <field name="view_mode">tree,form</field>
-</record>
- <menuitem id="event_management_second_level2_menu"   name="Service" action="event_management3_action" parent="event_management_second_level_menu"/>
-</data>
+        </record>
+        <menuitem id="event_management_second_level_two_menu" name="Service" action="event_management_three_action" parent="event_management_second_level_menu"/>
+    </data>
 </odoo>
 
 

@@ -1,2 +1,2 @@
 
-from . import event_type, event_booking
+from . import event_management

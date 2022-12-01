@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+         <record id="event_management_catering_menu_tree_action" model="ir.ui.view">
+            <field name="model">catering.menu</field>
+            <field name="arch" type="xml">
+                <tree string="catering.menu">
+                    <field name="name"/>
+                    <field name="category"/>
+                    <field name="unit_price"/>
+                </tree>
+            </field>
+         </record>
+         <record id="event_management_catering_menu_form_action" model="ir.ui.view">
+                <field name="model">catering.menu</field>
+                <field name="arch" type="xml">
+                    <form string="catering.menu">
+                        <sheet>
+                            <group>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="category"/>
+                                    <field name="image" widget="image"/>
+                                    <field name="unit_measure"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="unit_price" widget="monetary"/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+         </record>
+        <record id="event_management_five_action" model="ir.actions.act_window">
+            <field name="name">Catering Menu</field>
+            <field name="res_model">catering.menu</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="event_management_second_level_three_menu" name = "Catering Menu" action = "event_management_five_action" parent ='event_management_second_level_menu'/>
+    </data>
+</odoo>

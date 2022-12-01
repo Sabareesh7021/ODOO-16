@@ -1,39 +1,55 @@
 <?xml version="1.0" ?>
 <odoo>
     <data>
-        <record id="event_management22_action" model="ir.ui.view">
-            <field name="model">event_type</field>
+        <record id="event_management_two_tree_action" model="ir.ui.view">
+            <field name="model">event.type</field>
             <field name="arch" type="xml">
-                <tree string="test model">
-                    <field name="Event_Type"/>
-                    <field name="Code"/>
-                    <field name="Image"/>
+                <tree string="new">
+                    <field name="event_type"/>
+                    <field name="code"/>
+                    <field name="image"/>
                 </tree>
             </field>
           </record>
-          <record id="event_management21_action" model="ir.ui.view">
-                <field name="model">event_type</field>
+          <record id="event_management_two_form_action" model="ir.ui.view">
+                <field name="model">event.type</field>
                 <field name="arch" type="xml">
-                    <form string="test model">
+                    <form string="event.type">
                         <sheet>
                             <group>
-                                    <field name="Event_Type"/>
-                                    <field name="Code"/>
+                                    <field name="event_type"/>
+                                    <field name="code"/>
                             </group>
                             <group>
-                                <field name="Image"/>
+                                <field name="image"/>
                             </group>
                         </sheet>
                     </form>
                 </field>
           </record>
-        <record id="event_management2_action" model="ir.actions.act_window">
+        <record id="demo_data_one" model="event.type">
+            <field name="event_type">Birthday</field>
+            <field name="code">12</field>
+        </record>
+        <record id="demo_data_two" model="event.type">
+            <field name="event_type">Wedding</field>
+            <field name="code">28</field>
+        </record>
+        <record id="demo_data_three" model="event.type">
+            <field name="event_type">Anniversary</field>
+            <field name="code">16</field>
+        </record>
+        <record id="demo_data_four" model="event.type">
+            <field name="event_type">Inauguration</field>
+            <field name="code">1</field>
+        </record>
+        <record id="event_management_two_action" model="ir.actions.act_window">
             <field name="name">Event Types</field>
-            <field name="res_model">event_type</field>
+            <field name="res_model">event.type</field>
             <field name="view_mode">tree,form</field>
         </record>
-     <menuitem id="event_management_type_root" name="Event management"/>
-        <menuitem id="event_management_second_level_menu" name="Configuration"  />
-     <menuitem id="event_management_second_level1_menu"   name="Event Type" action="event_management2_action" parent="event_management_second_level_menu"/>
+     <menuitem id="event_management_type_root" name="Event Management"/>
+        <menuitem id="event_management_second_level_menu" name="Configuration" parent="event_management_type_root" />
+     <menuitem id="event_management_second_level_one_menu"   name="Event Type" action="event_management_two_action" parent="event_management_second_level_menu"/>
     </data>
 </odoo>
