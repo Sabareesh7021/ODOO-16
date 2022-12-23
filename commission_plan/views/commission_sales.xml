@@ -1,0 +1,18 @@
+<?xml version="1.0"  ?>
+<odoo>
+    <data>
+        <record id="inherit_sales" model="ir.ui.view">
+        	<field name="name">Sale Order Custom</field>
+        	<field name="model">sale.order</field>
+        	<field name="inherit_id" ref="sale.view_order_form"/>
+        	<field name="arch" type="xml">
+            	 <xpath expr="//field[@name='tax_totals']" position="after">
+                		<field name="commission_value"/>
+                 </xpath>
+				 <xpath expr="//field[@name='team_id']" position="after">
+                		<field name="commission_plan"/>
+                 </xpath>
+            </field>
+		</record>
+    </data>
+</odoo>

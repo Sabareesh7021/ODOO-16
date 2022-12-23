@@ -1,0 +1,76 @@
+<?xml version="1.0"  ?>
+<odoo>
+    <data>
+        <record id="commission_plan_one_tree" model="ir.ui.view">
+            <field name="model">crm.commission</field>
+            <field name="name">Commission Tree</field>
+            <field name="arch" type="xml">
+                <tree string="Tree">
+                    <field name="name"/>
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="commission_plan_one_form" model="ir.ui.view">
+            <field name="model">crm.commission</field>
+            <field name="arch" type="xml">
+                <form string="Form">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="product_wise_ids" attrs="{'invisible':[('type','not in','product wise')]}">
+                                <tree editable="bottom">
+                                    <field name="product"/>
+                                    <field name="product_category"/>
+                                    <field name="rate_in_percentage" widget="percentage"/>
+                                    <field name="max_commission_amount" widget="monetary"/>te
+                                </tree>
+                            </field>
+                        </group>
+                        <group attrs="{'invisible':[('type','not in','revenue wise')]}">
+                            <field name="type_revenue"/>
+                            <field name="rate" widget="percentage" attrs="{'invisible':[('type_revenue','not in','straight')]}"/>
+                        </group>
+                         <group  attrs="{'invisible':[('type','not in','revenue wise')]}">
+                            <field name="graduated_commission_ids" attrs="{'invisible':[('type_revenue','not in','graduated')]}">
+                                <tree editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="amount_from"/>
+                                    <field name="amount_to"/>
+                                    <field name="graduated_rate" widget="percentage"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="inherit_sales_team" model="ir.ui.view">
+        	<field name="name">Sales Team Custom</field>
+        	<field name="model">crm.team</field>
+        	<field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+        	<field name="arch" type="xml">
+            	 <xpath expr="//field[@name='company_id']" position="after">
+                		<field name="commission_plan_id"/>
+                 </xpath>
+            </field>
+		</record>
+        <record id="commission_plan_action" model="ir.actions.act_window">
+            <field name="name">Commission Plan</field>
+            <field name="res_model">crm.commission</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_commission_plan" parent="crm.crm_menu_root" action="commission_plan_action"/>
+    </data>
+</odoo>
