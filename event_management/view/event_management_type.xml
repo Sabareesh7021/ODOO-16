@@ -48,8 +48,8 @@
             <field name="res_model">event.type</field>
             <field name="view_mode">tree,form</field>
         </record>
-     <menuitem id="event_management_type_root" name="Event Management"/>
+        <menuitem id="event_management_type_root" name="Event Management"/>
         <menuitem id="event_management_second_level_menu" name="Configuration" parent="event_management_type_root" />
-     <menuitem id="event_management_second_level_one_menu"   name="Event Type" action="event_management_two_action" parent="event_management_second_level_menu"/>
+        <menuitem id="event_management_second_level_one_menu"   name="Event Type" action="event_management_two_action" parent="event_management_second_level_menu"/>
     </data>
 </odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="test_model_wizard_view_form" model="ir.ui.view">
+            <field name="name">test.model.wizard.form</field>
+            <field name="model">test.model.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <group class="oe_title">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="event_type_id"/>
+                        <field name="catering"/>
+                    </group>
+                    <footer>
+                        <button name="print_event_management_pdf" string="Print" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_event_management_report" model="ir.actions.report">
+            <field name="name">event management</field>
+            <field name="model">event.booking</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">event_management.report_event_management</field>
+            <field name="report_file">event_management.report_event_management</field>
+            <field name="binding_model_id" ref="model_event_booking"/>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="wizard_action_reporting" model="ir.actions.act_window">
+            <field name="name">Test Model Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">test.model.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="test_model_wizard_view_form"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="event_management_five_level_menu" sequence="1" name="Reporting" action="wizard_action_reporting" parent="event_management_type_root"/>
+    </data>
+</odoo>

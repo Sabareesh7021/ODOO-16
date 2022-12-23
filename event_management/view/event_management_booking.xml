@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <odoo>
-<data>
       <record id="event_management_one_tree_action" model="ir.ui.view">
             <field name="model">event.booking</field>
             <field name="arch" type="xml">
@@ -19,10 +18,18 @@
                     <form string="event.booking">
                         <header>
                             <button id="action_confirm" name="action_confirm" string="Confirm" class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', 'draft')]}"/>
-                            <button name= "catering_service" string="catering service" class="btn-primary" type="object"/>
+                            <button id="action_invoice" name="action_invoice" string="Invoice" class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', 'confirm')]}"/>
+                            <button name= "catering_service" string="catering service" class="btn-primary" type="object" attrs="{'invisible':[('bool_field', '=', True)]}"/>
                             <field name="state" widget="statusbar"  string="Status"/>
                         </header>
                         <sheet>
+                            <div name="button_box" position="inside">
+                                <button class="oe_stat_button" type="object" name="get_invoices" icon="fa-pencil-square-o" attrs="{'invisible':[('state','not in',('invoice','paid','expired'))]}">Invoices</button>
+                                <button class="oe_stat_button" type="object" name="action_view_catering" attrs="{'invisible':[('state','not in',('confirm','invoice','paid','expired'))]}">Catering</button>
+                            </div>
+                            <div class="oe_title'">
+                               <widget name="web_ribbon" title="Paid" attrs="{'invisible':[('state', '!=', 'paid')]}"/>
+                            </div>
                             <group>
                                     <field name="event"/>
                                     <field name = "cust_name" widget="res_partner_many2one" context="{'show_address': 1}" options='{"always_reload": True}'/>
@@ -31,6 +38,7 @@
                                     <field name="start_date"/>
                                     <field name="end_date"/>
                                     <field name="duration_id"/>
+                                    <field name="bool_field" invisible="1"/>
                             </group>
                         </sheet>
                         <div class="oe_chatter">
@@ -46,8 +54,6 @@
             <field name="res_model">event.booking</field>
             <field name="view_mode">tree,form</field>
       </record>
-
     <menuitem id="event_management_first_level_menu" name="Event Management" parent="event_management_type_root" sequence="0"/>
     <menuitem id="event_management_first_level_one_menu" name="Event Booking" action="event_management_one_action" parent="event_management_first_level_menu"/>
-</data>
 </odoo>

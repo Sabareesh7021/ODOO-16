@@ -6,4 +6,5 @@ access_service_table,access_service_table,model_service_table,base.group_user,1,
 access_event_catering,access_event_catering,model_event_catering,base.group_user,1,1,1,1
 access_catering_menu,access_catering_menu,model_catering_menu,base.group_user,1,1,1,1
 access_menu_tree,access_menu_tree,model_menu_tree,base.group_user,1,1,1,1
+access_test_model_wizard,access_test_model_wizard,model_test_model_wizard,base.group_user,1,1,1,1
 

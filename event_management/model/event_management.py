@@ -50,13 +50,16 @@ class EventBooking(models.Model):
     _description = "Event Booking"
     _rec_name = "event"
 
-    event = fields.Char(string="Event", compute="get_name")
-    cust_name = fields.Many2one('res.partner', string="Customer")
-    event_type = fields.Many2one('event.type')
+    event = fields.Char(string="Event", compute="get_name", store=True)
+    cust_name = fields.Many2one('res.partner', string="Customer", required=True)
+    event_type = fields.Many2one('event.type', required=True)
     booking_date = fields.Date()
-    start_date = fields.Datetime(string="Start Date")
-    end_date = fields.Datetime(string="End Date")
+    start_date = fields.Datetime(string="Start Date", required=True)
+    end_date = fields.Datetime(string="End Date", required=True)
     duration_id = fields.Char(string='Duration')
+    bool_field = fields.Boolean('Same text', default=False)
+    invoice_id = fields.Many2one('account.move')
+    catering_id = fields.Many2one('event.catering')
 
     @api.onchange('start_date', 'end_date')
     def auto_duration(self):
@@ -68,6 +71,7 @@ class EventBooking(models.Model):
         else:
             self.duration_id = '0'
 
+    @api.depends('event_type.event_type', 'cust_name.name', 'start_date', 'end_date')
     def get_name(self):
         result = []
         for event in self:
@@ -78,6 +82,7 @@ class EventBooking(models.Model):
             return result
 
     def catering_service(self):
+        self.bool_field = True
         return {
             'name': _('Event Catering'),
             'view_mode': 'form',
@@ -92,6 +97,8 @@ class EventBooking(models.Model):
         selection=[
             ('draft', 'Draft'),
             ('confirm', 'Confirmed'),
+            ("invoice", "Invoice"),
+            ("paid", "Paid"),
             ('expired', 'Expired'),
         ], default="draft"
     )
@@ -100,10 +107,120 @@ class EventBooking(models.Model):
         self.state = 'confirm'
         self.env['event.catering'].search([('state', '=', 'draft')]).action_confirm()
 
+    def action_invoice(self):
+        self.state = 'invoice'
+        vals = []
+        inv = self.env['event.catering'].search([('event_id', '=', self.id)])
+        for rec in inv.category_welcome_drink_ids:
+            vals.append((0, 0,
+                         {
+                             'name': rec.menu_id.name,
+                             'quantity': rec.quantity,
+                             'price_unit': rec.unit_price,
+                             'price_subtotal': rec.sub_total,
+                             'tax_ids': [],
+                         }))
+        for rec in inv.category_break_fast_ids:
+            vals.append((0, 0,
+                         {
+                             'name': rec.menu_id.name,
+                             'quantity': rec.quantity,
+                             'price_unit': rec.unit_price,
+                             'price_subtotal': rec.sub_total,
+                             'tax_ids': [],
+                         }))
+        for rec in inv.category_lunch_ids:
+            vals.append((0, 0,
+                         {
+                             'name': rec.menu_id.name,
+                             'quantity': rec.quantity,
+                             'price_unit': rec.unit_price,
+                             'price_subtotal': rec.sub_total,
+                             'tax_ids': [],
+                         }))
+        for rec in inv.category_dinner_ids:
+            vals.append((0, 0,
+                         {
+                             'name': rec.menu_id.name,
+                             'quantity': rec.quantity,
+                             'price_unit': rec.unit_price,
+                             'price_subtotal': rec.sub_total,
+                             'tax_ids': [],
+                         }))
+        for rec in inv.category_snacks_and_drinks_ids:
+            vals.append((0, 0,
+                         {
+                             'name': rec.menu_id.name,
+                             'quantity': rec.quantity,
+                             'price_unit': rec.unit_price,
+                             'price_subtotal': rec.sub_total,
+                             'tax_ids': [],
+                         }))
+        for rec in inv.category_beverages_ids:
+            vals.append((0, 0,
+                         {
+                             'name': rec.menu_id.name,
+                             'quantity': rec.quantity,
+                             'price_unit': rec.unit_price,
+                             'price_subtotal': rec.sub_total,
+                             'tax_ids': [],
+                         }))
+        self.write({'state': 'invoice'})
+        invoice = self.env['account.move'].create([{
+            'move_type': 'out_invoice',
+            'partner_id': self.cust_name.id,
+            'invoice_line_ids': vals,
+        }])
+        self.invoice_id = invoice.id
+        return {
+            'name': 'invoice',
+            'view_mode': 'form',
+            'res_id': invoice.id,
+            'res_model': 'account.move',
+            'type': 'ir.actions.act_window',
+            'target': 'current',
+        }
+
+    def get_invoices(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'invoice',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'account.move',
+            'view_id': self.env.ref('account.view_move_form').id,
+            'res_id': self.invoice_id.id,
+            'target': 'current',
+            'context': {"create": False},
+            }
+
+    def action_view_catering(self):
+        event = self.env['event.catering'].search([('event_id', '=', self.id)])
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'catering',
+            'view_mode': 'form',
+            'res_model': 'event.catering',
+            'res_id': event.id,
+            'target': 'current',
+        }
+
+
+class Invoice(models.Model):
+    _inherit = 'account.move'
+    invoice_id = fields.Many2one("event.booking")
+
+    def action_register_payment(self):
+        res = super(Invoice, self).action_register_payment()
+        for res in self:
+            res.payment_state = "paid"
+            state = self.env['event.booking'].search([('event.id', '=', self.id)])
+            state.write({'state': 'paid'})
+        return res
 
 
 class EventCatering(models.Model):
-    _name = "event.catering"
+    _name = 'event.catering'
     _description = "Event Catering"
     _rec_name = "sequence"
 
@@ -125,7 +242,8 @@ class EventCatering(models.Model):
     category_snacks_and_drinks_ids = fields.One2many("menu.tree", "snacks_and_drinks", string="Snacks & Drinks")
     beverages = fields.Boolean(string="Beverages")
     category_beverages_ids = fields.One2many("menu.tree", "beverages", string="Beverages")
-    grand_total = fields.Float(string='Grand Total', compute="_compute_grand_total")
+    grand_total = fields.Float(string='Grand Total', compute="_compute_grand_total", store=True)
+    catering_id = fields.Many2one('event.booking')
 
     def action_confirm(self):
         self.state = 'confirm'

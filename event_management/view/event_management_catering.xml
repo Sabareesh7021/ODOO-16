@@ -127,11 +127,12 @@
                                         </tree>
                                     </field>
                                 </page>
-
                             </notebook>
-                            <h1>
-                                    <field name="grand_total" widget="monetary"/>
-                            </h1>
+                            <group>
+                                <h1>
+                                        <field name="grand_total" widget="monetary" attrs="{'invisible':[('welcome_drink', '=', False),('break_fast' ,'=', False),('lunch', '=', False),('dinner' ,'=', False),('snacks_and_drinks' ,'=', False),('beverages' ,'=', False)]}"/>
+                                </h1>
+                            </group>
                         </sheet>
                     </form>
                 </field>
