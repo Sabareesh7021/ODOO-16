@@ -3,46 +3,70 @@
     <data>
         <template id="report_event_management">
             <t t-call="web.html_container">
-                <t t-call="web.external_layout">
-                    <div class="page">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="text-center">
+                        <h1 style="font-size:30px">Event Management</h1>
+                        <t t-if="form_data.get('event_type_id')">
+                            <t t-esc="form_data['event_type_id'][1]"/>
+                        </t>
+                    </div>
+                    <t t-if="form_data.get('date_from') and form_data.get('date_to')">
+                        From Date :
+                        <t t-esc="form_data['date_from']"/>
+                        <br/>
+                        <br/>
+                        To Date :
+                        <t t-esc="form_data['date_to']"/>
+                    </t>
+                    <t t-else="">
+                        Date :
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                    </t>
+                    <br/>
+                    <br/>
+                    <div class="row">
                         <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    References
-                                </th>
-                                <th>
-                                    Event Name
-                                </th>
-                                <th>
-                                    Event Type
-                                </th>
-                                <th>
-                                    Customer
-                                </th>
-                                <th>
-                                    Booking Date
-                                </th>
-                                <th>
-                                    Status
-                                </th>
-                                <th>
-                                    Total Amount
-                                </th>
-                            </tr>
-                        </thead>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        References
+                                    </th>
+                                    <th>
+                                        Event Name
+                                    </th>
+                                    <th>
+                                        Event Type
+                                    </th>
+                                    <t t-if="form_data.get('event_type_id')">
+                                        <th>
+                                            Customer
+                                        </th>
+                                        <th>
+                                            Booking Date
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Total Amount
+                                        </th>
+
+                                    </t>
+                                </tr>
+                            </thead>
                             <t t-foreach="val" t-as="line">
-<!--                                <t t-if="line['event_type_id'] == lines['event_type']">-->
-                                    <tr>
-                                        <td>
-                                            <span t-esc="line_index + 1"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['event']"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['event_type']"/>
-                                        </td>
+                                <tr>
+                                    <td>
+                                        <span t-esc="line_index + 1"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['event']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="line['event_type']"/>
+                                    </td>
+                                    <t t-if="form_data.get('event_type_id')">
                                         <td>
                                             <span t-esc="line['cust']"/>
                                         </td>
@@ -55,58 +79,72 @@
                                         <td>
                                             <span t-esc="line['grand_total']"/>
                                         </td>
-                                    </tr>
+                                    </t>
+                                </tr>
+                            </t>
+                            <t t-if="form_data.get('catering')">
+                                <tr>
+                                    <th>
+                                        Item
+                                    </th>
+                                    <th>
+                                        Category
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        UOM
+                                    </th>
+                                    <th>
+                                        Unit Price
+                                    </th>
+                                    <th>
+                                        Subtotal
+                                    </th>
+                                </tr>
+                                <t t-foreach="event" t-as="lines">
+                                    <t t-if="line['event'] == lines['event']">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="lines['name']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="lines['category']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="lines['description']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="lines['quantity']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="lines['uom'][list(lines['uom'].keys())[0]]"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="lines['unit_price']"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="lines['sub_total']"/>
+                                            </td>
+                                        </tr>
+                                    </t>
                                 </t>
-<!--                            </t>-->
-                            <thead>
-                            <tr>
-                                <th>
-                                    Sl No.
-                                </th>
-                                <th>
-                                    Category
-                                </th>
-                                <th>
-                                    Item
-                                </th>
-                                <th>
-                                    Quantity
-                                </th>
-                                <th>
-                                    Unit of Measure
-                                </th>
-                                <th>
-                                    Sub Total
-                                </th>
-                            </tr>
-                        </thead>
-                            <t t-foreach="val" t-as="line">
-<!--                                <t t-if="line['event_type_id'] == lines['event_type']">-->
-                                    <tr>
-                                        <td>
-                                            <span t-esc="line_index + 1"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['category']"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['name']"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['quantity']"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['uom']"/>
-                                        </td>
-                                        <td>
-                                            <span t-esc="line['unit_price']"/>
-                                        </td>
-
-                                    </tr>
-                                </t>
+                            </t>
                         </table>
                     </div>
-                </t>
+                    <br/>
+                    <br/>
+                    <h1>
+                        Total:
+                        <t t-esc="total"/>
+                    </h1>
+
+                </div>
+            </t>
             </t>
         </template>
     </data>

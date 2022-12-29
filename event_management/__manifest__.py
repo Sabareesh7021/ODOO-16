@@ -15,10 +15,12 @@
         'data/data.xml',
         'view/catering_menu.xml',
         'wizards/wizard_reporting.xml',
-        'wizards/reporting_event_booking.xml'
+        'wizards/reporting_event_booking.xml',
+
         ],
-
-
-
-
+    'assets': {
+        'web.assets_backend': [
+            '/event_management/static/src/js/action_manager.js'
+                ]
+        }
 }

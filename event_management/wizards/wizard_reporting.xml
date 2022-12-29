@@ -7,13 +7,14 @@
             <field name="arch" type="xml">
                 <form string="Test">
                     <group class="oe_title">
-                        <field name="date_from"/>
-                        <field name="date_to"/>
                         <field name="event_type_id"/>
                         <field name="catering"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
                     </group>
                     <footer>
-                        <button name="print_event_management_pdf" string="Print" type="object" class="btn-primary"/>
+                        <button name="print_event_management_pdf" string="PDF" type="object" class="btn-primary"/>
+                        <button name="print_xlsx" string="XLSX" type="object" class="btn-primary"/>
                         <button string="Cancel" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
