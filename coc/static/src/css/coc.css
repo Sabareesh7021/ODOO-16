@@ -1,0 +1,15 @@
+.o_sale_order .text-success {
+    background-color: #a7f2af7d !important;
+}
+
+.o_sale_order .text-danger {
+    background-color: #fb88847d !important;
+}
+
+.o_sale_order .text-info {
+    background-color: #93fbfb7d !important;
+}
+
+.o_sale_order .text-warning {
+    background-color: #fdf57d8f !important;
+}
