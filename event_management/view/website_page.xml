@@ -1,0 +1,116 @@
+<?xml version="1.0"  ?>
+<odoo>
+    <data>
+        <template id="website_page_event">
+            <t t-call="website.layout">
+                <div id="wrap" class="oe_structure oe_empty">
+                    <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                        <div class="container">
+                            <form action="/event_booking/form/submit" method="post" enctype="multipart/form-data"
+                                  class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="form-group col-12 s_website_form_field s_website_form_required">
+                                    <p style="page-break-after:always;"/>
+                                    <p style="page-break-after:always;"/>
+                                    <p style="page-break-after:always;"/>
+                                    <p style="page-break-after:always;"/>
+                                        <div class="text-center">
+                                            <h1 style="font-size:30px">Event Booking</h1>
+                                        </div>
+                                    <p style="page-break-after:always;"/>
+                                    <p style="page-break-after:always;"/>
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="event">
+                                                <span class="s_website_form_label_content">Event Type</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <select name="event" class="form-control link-style">
+                                                    <t t-foreach="event" t-as="event">
+                                                        <option t-esc="event.event_type" t-att-value="event.id"/>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <p style="page-break-after:always;"/>
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="name">
+                                                <span class="s_website_form_label_content">Customer</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <select name="partner" class="form-control link-style">
+                                                    <t t-foreach="cust" t-as="rec">
+                                                        <option t-esc="rec.name" t-att-value="rec.id"/>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    <p style="page-break-after:always;"/>
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Booking Date</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input id="booking_date" type="date"
+                                                       class="form-control s_website_form_input" name="booking_date"
+                                                       required="1"/>
+                                            </div>
+                                        </div>
+                                    <p style="page-break-after:always;"/>
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">Start Date</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input id="start_date" type="datetime-local"
+                                                       class="form-control s_website_form_input" name="start_date"
+                                                       required="1"/>
+                                            </div>
+                                        </div>
+                                    <p style="page-break-after:always;"/>
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                   style="width: 200px" for="studio1">
+                                                <span class="s_website_form_label_content">End Date</span>
+                                                <span class="s_website_form_mark">*</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <input id="end_date" type="datetime-local"
+                                                       class="form-control s_website_form_input" name="end_date"
+                                                       required="1"/>
+                                            </div>
+                                        </div>
+                                    <p style="page-break-after:always;"/>
+                                    <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                                        <div style="width: 200px;" class="s_website_form_label"/>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </template>
+        <template id="success" name="Successfully Submitted">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="alert alert-success">
+                                Event Booking created successfully.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

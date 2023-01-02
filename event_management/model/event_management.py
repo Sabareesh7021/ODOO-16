@@ -60,6 +60,7 @@ class EventBooking(models.Model):
     bool_field = fields.Boolean('Same text', default=False)
     invoice_id = fields.Many2one('account.move')
     catering_id = fields.Many2one('event.catering')
+    # sale_order = fields.Many2one('sale.order')
 
     @api.onchange('start_date', 'end_date')
     def auto_duration(self):
@@ -106,6 +107,7 @@ class EventBooking(models.Model):
     def action_confirm(self):
         self.state = 'confirm'
         self.env['event.catering'].search([('state', '=', 'draft')]).action_confirm()
+        # self.env['sale.order'].search([('state', '!=', 'sale')]).action_confirm()
 
     def action_invoice(self):
         self.state = 'invoice'

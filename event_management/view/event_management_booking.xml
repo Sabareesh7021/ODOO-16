@@ -38,6 +38,7 @@
                                     <field name="start_date"/>
                                     <field name="end_date"/>
                                     <field name="duration_id"/>
+<!--                                    <field name="sale_order"/>-->
                                     <field name="bool_field" invisible="1"/>
                             </group>
                         </sheet>
