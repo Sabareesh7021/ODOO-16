@@ -1,0 +1,17 @@
+<odoo>
+    <template id="js_dynamic_snippet" name="Elearning Courses">
+        <section class="oe_structure js_dynamic_snippet">
+            <div class="container">
+                <div class="text-center py-5">
+                    <h2 class="h1">Elearning Courses</h2>
+                </div>
+                <div class="row justify-content-center" id="elearning"/>
+            </div>
+        </section>
+    </template>
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]" position="after">
+            <t t-snippet="snippet_elearning.js_dynamic_snippet"/>
+        </xpath>
+    </template>
+</odoo>

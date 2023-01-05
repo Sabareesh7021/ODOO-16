@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="snippet_elearning.course_carousel">
+        <div id="course_carousel" class="container carousel slide" t-att-data-bs-interval="interval"
+             data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="card-deck">
+                    <t t-foreach="chunks" t-as="item">
+                        <div t-attf-class="carousel-item {{item.is_active ? 'active' : ''}}">
+                            <div class="row align-items-center justify-content-between">
+                                <t t-foreach="item" t-as="line">
+                                    <div class="block span3 col-3">
+                                        <div class="card bg-light mb-3" style="width: 18rem;">
+                                            <img class="card-img-top"
+                                                 t-attf-src="data:image/png;base64,{{line.image_1920}}"
+                                                 style="padding: 0px; margin: 0px; height: 160px; width:305px;"/>
+                                            <h5 class="mb-0">
+                                                <t t-esc="line.name"/>
+                                            </h5>
+                                            <div class="card-text" style="height:40px;">
+                                                <t t-raw="line.description"/>
+                                            </div>
+<!--                                            <div class="card-footer">-->
+                                                <a t-attf-href="/slides/#{line.id}" class="align-self-end btn btn-lg btn-block btn-primary" style="margin-top: auto; width:100%">Goto
+                                                    Course
+                                                </a>
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#course_carousel" role="button" data-bs-slide="prev"
+               style="left: -198px;">
+                <span class="fa fa-chevron-left fa-2x text-black"/>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#course_carousel" role="button" data-bs-slide="next"
+               style="right: -195px">
+                <span class="fa fa-chevron-right fa-2x text-black"/>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </t>
+</templates>
