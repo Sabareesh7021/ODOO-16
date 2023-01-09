@@ -1,0 +1,23 @@
+<odoo>
+    <template id="product_cart_bom" inherit_id="website_sale.cart_lines" name="BoM Cart Inherit">
+        <xpath expr="//td[hasclass('td-product_name')]" position="inside">
+            <t t-if="bom is not None">
+                <t t-if="line.product_id.product_tmpl_id.id in bom">
+                    <p class="font-weight-bold" >
+                        <strong>
+                            <p style="color:#4e8039;">BoM Products:</p>
+                        </strong>
+
+                            <t t-foreach="line.product_id.product_tmpl_id.bom_ids.bom_line_ids"
+                               t-as="bom_product">
+                                <p>
+                                    <t t-esc="bom_product.product_id.name"/>
+                                </p>
+
+                            </t>
+                    </p>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
