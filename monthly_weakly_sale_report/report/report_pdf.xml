@@ -1,0 +1,63 @@
+<odoo>
+    <template id="sale_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <div class="row mt64 mb32">
+                        <div class="col-md-12">
+                            <h2 class="text-center">
+                                <t t-esc="name"/>
+                            </h2>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <t t-if="from_date">
+                        From Date :
+                        <t t-esc="from_date"/>
+                    </t>-
+                    <br/>
+                    <br/>
+                    <t t-if="to_date">
+                        To Date :
+                        <t t-esc="to_date"/>
+                    </t>
+                    <br/>
+                    <br/>
+                    <div class="row pt-2">
+                        <div class="col-md-12">
+                            <t>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <t>
+                                            <th class="text-center">Sale Order</th>
+                                            <th class="text-center">Customer</th>
+                                            <th class="text-center">Amount</th>
+                                            <th class="text-center">Date</th>
+                                        </t>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="product" t-as="data">
+                                            <td>
+                                                <t t-esc="data.name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="data.partner_id.name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="data.amount_total"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="data.date_order"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

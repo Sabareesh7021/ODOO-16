@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_report_email_template" model="mail.template">
+        <field name="name">Email Template</field>
+        <field name="model_id" ref="monthly_weakly_sale_report.model_report_sales"/>
+        <field name="email_from">{{object.company_id.email}}</field>
+        <field name="lang">{{ ctx.get('default_lang') }}</field>
+<!--        <field name="subject">Sale Report</field>-->
+        <field name="body_html" type="html">
+            <p>
+                Sale Report
+            </p>
+
+        </field>
+    </record>
+</odoo>

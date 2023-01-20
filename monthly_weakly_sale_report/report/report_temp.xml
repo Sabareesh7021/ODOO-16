@@ -1,0 +1,11 @@
+<odoo>
+    <record id="sale_report_pdf" model="ir.actions.report">
+        <field name="name">Sale Report</field>
+        <field name="model">report.sales</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">monthly_weakly_sale_report.sale_report_template</field>
+        <field name="report_file">monthly_weakly_sale_report.sale_report_template</field>
+        <field name="binding_model_id" ref="model_report_sales"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
