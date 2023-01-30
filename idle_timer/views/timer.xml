@@ -1,0 +1,7 @@
+<odoo>
+    <template id="survey_form_inherit" inherit_id="survey.survey_fill_header">
+        <xpath expr="//div[hasclass('o_survey_timer')]" position="inside">
+            <span class="countdown fw-bold text-danger"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_survey_form_inherit_idle_time" model="ir.ui.view">
+            <field name="name">survey.form.inherit.idle_time</field>
+            <field name="model">survey.survey</field>
+            <field name="inherit_id" ref="survey.survey_survey_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='scoring_type']" position="after">
+                    <label for="idle"/>
+                    <div class="o_checkbox_optional_field">
+                        <field name="idle" nolabel="1"/>
+                        <div attrs="{'invisible': [('idle', '=', False)]}">
+                            <field name="idle_timer" widget="float_time" nolabel="1" class="oe_inline"/>
+                            minutes
+                        </div>
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
