@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="task_stage_form_project" model="ir.ui.view">
+        <field name="name">task.stage</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="sequence_no"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
