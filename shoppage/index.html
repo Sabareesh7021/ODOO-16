@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="screen">
+        <div class="head">
+            
+            <button class=cart_button><img class="gc" src="gcart.png"></button>
+            <button class="home">Home</button>
+        </div>
+        <div class="body">
+            <div class="product">
+                <h1 class="producthead">Product</h2>
+                <table >
+                    <tbody class="ptable">
+                    <tr id="r1">
+                        <td>
+                            <img src="ip.jpg" alt="Iphone 13" class="pimg">
+                        </td>
+                        <td>
+                            <header id="pname1">Iphone 13</header>
+                        </td>
+                        <td>
+                            63599
+                        </td>
+                        <td>
+                            <button class="btn">Add cart</button>
+                        </td>
+                    </tr>
+                    <tr id="r2" >
+                        <td>
+                            <img src="lp.jpeg" alt="Dell Laptop" class="pimg">
+                        </td>
+                        <td>
+                            <header id="pname2">Dell Laptop</header>
+                        </td>
+                        <td>45060
+                        </td>
+                        <td>
+                            <button  class="btn">Add cart</button>
+                        </td>
+                    </tr>
+                    <tr id="r3">
+                        <td>
+                            <img src="hd.jpeg" alt="Boat Wireless Headset" class="pimg">
+                        </td>
+                        <td>
+                            <header id="pname3">Boat Headset</header>
+                        </td>
+                        <td>1750
+                        </td>
+                        <td>
+                            <button class="btn">Add cart</button>
+                        </td>    
+                    </tr>
+                </tbody>
+                </table>    
+            </div>
+            <div class="cart" style="display:none;">
+                <h1 class="chead">Cart</h1>
+                    <table id="ctable">
+                        
+                        <thead>
+                            <tr>
+                                <th>
+                                    Product image
+                                </th>
+                                <th>
+                                    Product name
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+                                <th>
+                                    Price
+                                </th>
+                                <th>
+                                    Total Price
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                
+                        <table class="tprice">
+                            <tr>
+                                <td><button class="clear_cart" >Clear Cart</button></td>
+                                <td>Total  </td>
+                                <td class="total_Amount"></td>
+                                <td> <button class="shop">Buy</button></td>
+            </div>
+            <div id="bill_body" style="display:none;">
+                <header id="pay_head">PaymentGate</header>
+                        <div class="buy">
+                            <br>
+                            <form method="post" id="paymentForm">
+                                <p>
+                                    <label id="n">Name on card</label>
+                                    <input type="text" id="name" pattern="[A-Z a-z]{3,15}" placeholder="Sam J" onfocusout="hasnum()" required>
+                                    <small id="nspan"></small>
+                                </p>
+                                <p>
+                                    <label id="p">Phone NO.</label>
+                                    <input type="tel" id="phno" pattern="[0-9]{10}" maxlength="10"  onfocusout="phNo()" required>
+                                    <span id="pspan"></span>
+                                </p>
+                                <p>
+                                    <label id="c">Card number</label>
+                                    <input type="text" id="cnumb" pattern="[0-9]{14,16}" maxlength="16" required>
+                                    <span id="cspan">
+                                </p>
+                                
+                                <p>
+                                    <label id="v">CVV</label>
+                                    <input type="text" id="cvv" pattern="[0-9]{3}" maxlength="3" placeholder="123"required>
+                                    <span id="cvspan"></span>
+                                </p>    
+                                <p>
+                                    <label id="date">Expiry</label>
+                                    <input type="text" id="expr" onfocusout="checkDate()" pattern="[0-9]{1,2}/[0-9]{2,4}"  placeholder=" MM/YY "required>
+                                    <span id="espan"></span>
+                                </p>
+                                <p>
+                                    <label id="amount">Amount</label>
+                                    <input  id="am"  required readonly="readonly">
+                                </p>
+                                <input type="submit"  class="btn btn-primary"   id="submit" value="Pay">
+                                <input type="reset" class="btn btn-primary" value="Clear">
+                            </form>
+                        </div>
+            </div>    
+
+
+
+            
+        </div>
+     
+            
+
+    </div>
+ 
+    
+        
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<script src="fn.js"></script>
+</html> 

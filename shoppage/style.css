@@ -1,0 +1,160 @@
+.screen{
+    width: 100%;
+    height: 100%;
+
+}
+.head{
+    background: blue;
+    width: 100%;
+    height: 95px;
+    
+}
+body{
+    margin: 0;
+}
+
+.gc{
+    width: 100px;
+    margin-left: 0px;
+}
+.body{
+    background: white;
+    width: 100%;
+    height: 750px;
+    margin-top: -21px
+}
+.product{
+    width: 50%;
+    border-right: 1px solid black;
+    height: 750px;
+    float: left;
+}
+.producthead{
+    font-family: Roboto,Arial,sans-serif;
+    text-align: center;
+}
+.pimg{
+    width: 215px;
+    height: 180px;
+    margin-left: 6px;
+}
+.cart{
+    width: 50%;
+    height: 750px;
+    float: right;
+}
+.chead{
+    text-align: center;
+}
+
+#ctable{
+    text-size-adjust: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+}
+.foot{
+    width: 100%;
+    height: 115px;
+    background: blue;
+}
+
+
+
+
+.btn{
+    margin-bottom: 20px;
+    padding-left: 10px;
+    font-family: Roboto,Arial,sans-serif;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    width: 83px;
+    border: none;
+}
+.qty{
+    width: 50px;
+height: 20px;
+}
+
+
+th,td{
+    padding-right: 83px;
+}
+.hd{
+    text-align: center;
+    font-family: Roboto,Arial,sans-serif;
+
+    
+}
+.tprice{
+    margin-left: 242px;
+}
+.buy{
+    width: 400px;
+    height: 370px;
+    background: lightblue;
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-top: 6px;
+    text-align: center;
+}
+
+
+#n{
+    margin-left: -43;
+}
+#v{
+    margin-left: -60px;
+}
+#expiry_month{
+    width: 45px;
+}
+#expiry_year{
+    width: 90px;
+}
+#m{
+    margin-left: -9px;
+}
+#y{
+    margin-left: 5px;
+}
+#cvv{
+    width: -210px;
+}
+#am{
+    width: 100px;
+}
+#paymentForm{
+    margin-top: 5px;
+}
+#p{
+    margin-left: -20px;
+}
+#c{
+    margin-left: -9px;
+}
+#amount{
+    margin-left: -140px;
+}
+#date{
+    margin-left: -50px;
+}
+#bill_body{
+    width: 500px;
+    height: 480px;
+    background-color: rgb(126, 154, 247);
+    margin-top: 150px;
+    margin-left: -210px;
+}
+#pay_head{
+    text-align: center;
+    font-size: 50px;
+}
+.shop{margin-bottom: 20px;
+    padding-left: 10px;
+    font-family: Roboto,Arial,sans-serif;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    width: 83px;
+    border: none;
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<!--online shopping approved-->
+
+        <head>
+            <title>Online shopping page</title>
+            <meta charset=UTF-8>
+            <link rel="stylesheet" href="onlShopping.css" type="text/css">
+             <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.19/dist/css/uikit.min.css" />
+<!--            <script src="script.js"></script>-->
+        </head>
+<body>
+
+<div id="main">
+
+    <a href="#mycart" id="my_cart">My cart
+       <i id="cart" class="fa-solid fa-cart-shopping"></i>
+    </a>
+<!--    <a href="#login">Login</a>-->
+<!--    <a href="#brand">Brand</a>-->
+    <a href="#shop" id="shp">Shop</a>
+    <a class="split">Welcome..</a>
+</div>
+
+<!--products-->
+<br><br>
+<div class="container" id="shop">
+    <br><br>
+    <div class="row">
+        <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="phn(1).jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title">Xiaomi 11i 5G</h4>
+                      <h4 class="card-text">$342</h4>
+                      <a class="btn btn-primary btn-sub">Add to Cart</a>
+                        <a class="btn btn-primary"> Buy now</a>
+                    </div>
+                  </div>
+        </div>
+        <div class = 'col-md-4 col-lg-4 one'>
+                <div class="card" style="width: 18rem;">
+                    <img src="tab(2).jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title">Motorola Tab G70</h4>
+                      <h4 class="card-text">$218</h4>
+                      <a class="btn btn-primary btn-sub">Add to Cart</a>
+                        <a class="btn btn-primary"> Buy now</a>
+                    </div>
+                  </div>
+        </div>
+        <div class = 'col-md-4 col-lg-4'>
+                <div class="card" style="width: 18rem;">
+                    <img src="lap2(4).jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title">Apple MacBook Air</h4>
+                      <h4 class="card-text">$1199</h4>
+                      <a class="btn btn-primary btn-sub">Add to Cart</a>
+                        <a class="btn btn-primary"> Buy now</a>
+                    </div>
+                  </div>
+              </div>
+    </div></div>
+    <br>
+<!--    cart details-->
+
+<div id="mycart">
+  <div class="uk-overflow-auto container" style = 'width: 70%'>
+        <table class="uk-table uk-table-hover  ">
+<!--            uk-table-divider uk-table-middle-->
+            <thead>
+                <tr><h1 align="center"><strong>My cart</strong></h1></tr>
+                <tr>
+                    <th class="uk-table-shrink"></th>
+                    <th class="uk-table-small sty"><h4>ITEM</h4></th>
+                    <th class="uk-table-small"></th>
+                    <th class="uk-width-small sty"><h4>PRICE</h4></th>
+                    <th class="uk-table-shrink uk-text-small sty" readonly><h4>QUANTITY</h4></th>
+                    <th class="uk-table-shrink uk-text-small sty"><h4>TOTAL</h4></th>
+
+                </tr>
+            </thead>
+            <tbody>
+<!--                <tr>-->
+<!--                    <td></td>-->
+<!--                    <td><img class="uk-preserve-width uk-border-circle" src="phn(1).jpg" width="40" alt=""></td>-->
+<!--                    <td class="uk-table-link">-->
+<!--                        <h5 class = "item-name">Xiaomi 11i 5G</h5>-->
+<!--                    </td>-->
+<!--                    <td class="uk-text-truncate item-price"><h5>$342</h5></td>-->
+<!--                    <td><input type = 'number' class = 'num' value = '1'></td>-->
+<!--                    <td class="uk-text-truncate total-price"><h5>$342</h5></td>-->
+<!--                    <td><button class="uk-button uk-button-danger" type="button" style="padding:0px;" >Remove</button></td>-->
+<!--                </tr>-->
+
+            </tbody>
+            <tr>
+              <td></td>
+              <td><img class="uk-preserve-width uk-border-circle"  width="40" alt=""></td>
+              <td class="uk-table-link">
+                  <p><strong>Grand-Total</strong></p>
+              </td>
+              <td class="uk-text-truncate"><h4></h4></td>
+              <td class="uk-text-truncate"><h4></h4></td>
+              <td class="uk-text-truncate grand-total"><p><strong>$0</strong></p></td>
+            </tr>
+
+        </table><center>
+        <a href="#purchase" class="uk-button uk-button-primary uk-width-1-2" type="button"  id="purch" style="padding:0px;  border-radius: 5px;" >proceed to checkout</a>
+       </center> <br><br>
+    </div>
+</div>
+
+<!--BILL PAYMENT-->
+<div id="purchase" class="container">
+
+        <h1 align="center"><strong>Bill Payment</strong></h1>
+<center>
+<section>
+    <form action="cart.html" id="form">
+        <table><br>
+            <tr>
+                <td>Name on Card</td>
+                <td><input type="text" id="name" pattern="[A-Z a-z]{3,15}" onfocusout="hasnum()" required>
+                <small id="nspan"></small></td>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="tel" id="phno" pattern="[0-9]{10}" maxlength="10"  onfocusout="phNo()" required>
+                 <span id="pspan"></span></td>
+            </tr>
+            <tr>
+                <td>Card Number</td>
+                <td><input type="text" id="cnumb" pattern="[0-9]{14,16}" maxlength="16" required>
+                <span id="cspan"></span></td>
+            </tr>
+            <tr>
+                <td>CVV</td>
+                <td><input type="text" id="cvv" pattern="[0-9]{3}" maxlength="3" required>
+                    <span id="cvspan"></span> </td>
+            </tr>
+            <tr>
+                <td>Expiry Date </td>
+                <td><input type="text" id="expr" onfocusout="checkDate()" pattern="[0-9]{1,2}/[0-9]{2,4}" required>
+                <span id="espan"></span></td>
+<!--                re = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;-->
+<!--                    /^(0[1-9]|1[0-2])\/?([0-9]{2})$/        \d{1,2}/\d{4}-->
+            </tr>
+            <tr>
+                <td>Total Amount</td>
+                <td><input  id="tamnt"  required readonly="readonly"></td>
+            </tr>
+         </table><br>
+        <input type="submit"  class="btn btn-primary"   id="submit" value="Pay">
+        <input type="reset" class="btn btn-primary" value="Clear">
+    </form>
+</section>
+</center><br><br>
+</div>
+
+<!--SUCCESS MSG-->
+
+<!--<div class="container"  class="success" id="success">-->
+<!--    <center>-->
+<!--    <section style="padding-top:90px;border: 0px;">-->
+<!--    <img src="success.png" style="height:100px;"><br>-->
+<!--    <h3>Your Payment was Successful</h3><br>-->
+<!--        <a href="#shop" class="uk-button  uk-button-primary uk-width-1-2"  style="padding:0px; color:white; border-radius: 5px;">Continue Shopping</a>-->
+<!--    </section>-->
+<!--</center>-->
+<!--</div>-->
+
+
+<script type="text/javascript" src = 'shopping_script.js'></script>
+<script>
+
+$(function(){
+      $("#mycart").hide();
+        $("#purchase").hide();
+        $("#success").hide();
+         $("#shop").show();
+});
+    // hide and show contents
+
+$(function(){
+    $("#my_cart").click(function(){
+        $("#shop").hide();
+        $("#purchase").hide();
+         $("#success").hide();
+        $("#mycart").show();
+    });
+});
+
+$(function(){
+    $("#shp").click(function(){
+         $("#mycart").hide();
+         $("#purchase").hide();
+         $("#success").hide();
+        $("#shop").show();
+
+    });
+});
+$(function(){
+    $("#purch").click(function(){
+         $("#mycart").hide();
+        $("#shop").hide();
+        $("#success").hide();
+        $("#purchase").show();
+
+    });
+});
+
+$(function(){
+    $("#success").click(function(){
+         $("#mycart").hide();
+        $("#purchase").hide();
+        $("#success").hide();
+         $("#shop").show();
+
+    });
+});
+
+</script>
+</body>
+
+</html>
