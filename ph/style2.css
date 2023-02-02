@@ -1,0 +1,24 @@
+#add{
+    margin-left: 10px;
+}
+
+#phone_book{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+
+body{
+    background-color: rgb(203, 213, 230);
+}
+
+#save{
+    margin: 30px;
+}
+
+
+
+#con{
+    color: aliceblue;
+    size: 20px;
+}
